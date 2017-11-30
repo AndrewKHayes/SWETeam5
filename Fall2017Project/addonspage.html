@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add-ons and Checkout</title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+    <script type="text/javascript" src="https://checkout.stripe.com/checkout.js"></script>
+</head>
+<body>
+<h2>Let's add some goodies!</h2>
+<p>Reservation total</p>
+<p id="total"></p>
+<div>
+    <p id="bronzeprice">65</p>
+    <button id="bronzebtn" onclick="addBronze()">Add Bronze Package</button>
+</div>
+<div>silver
+    <p id="silverprice">100</p>
+    <button id="silverbtn" onclick="addSilver()">Add Silver Package</button>
+</div>
+<div>gold
+    <p id="goldprice">200</p>
+    <button id="goldbtn" onclick="addGold()">Add Gold Package</button>
+</div>
+<!--<p>Total with reservation + bronze package VVV (just a test)</p>-->
+<p>Your total is</p>
+<p id="newtotal"></p>
+
+<button id="customButton">Purchase</button>
+
+
+<script>
+
+    if (window.parent && window.parent.parent){
+        window.parent.parent.postMessage(["resultsFrame", {
+            height: document.body.getBoundingClientRect().height,
+            slug: "wouddst0"
+        }], "*")
+    }
+</script>
+
+
+<script>
+    var prevTotal = localStorage.getItem('totalcost');
+    document.getElementById('total').innerHTML=prevTotal;
+    var prevTo = parseInt(prevTotal);
+
+    var x = document.getElementById("bronzeprice");
+    var bronzeText = x.textContent;
+    var bronzeCost = Number(bronzeText);
+    
+    var y = document.getElementById("silverprice");
+    var silverText = y.textContent;
+    var silverCost = Number(silverText);
+    var newTotal,bronzeTrue,silverTrue,goldTrue;
+
+
+    function addBronze() {
+
+        var newTotal = bronzeCost + prevTo;
+
+        return newTotal;
+
+    }
+
+    newTotal = prevTo + bronzeCost;
+    
+
+    localStorage.setItem('newtotal',newTotal);
+
+
+    document.getElementById("newtotal").innerHTML=newTotal;
+
+
+</script>
+
+<script type='text/javascript'>
+    window.onload=function(){
+        var handler = StripeCheckout.configure({
+
+            key: 'pk_test_ACLsHxAj8f94hFtRL4WadeiH',
+            image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+            locale: 'auto',
+            token: function(token) {
+
+                console.log("Token created: " + token.id)
+            },
+            opened: function() {
+                console.log("Form opened");
+            },
+            closed: function() {
+                console.log("Form closed");
+            }
+        });
+
+        var amount = localStorage.getItem('newtotal')*100;
+        $('#customButton').on('click', function(e) {
+
+            handler.open({
+                name: 'Vacayy.com',
+                description: 'Vacation Reservation',
+                amount: amount
+            });
+            e.preventDefault();
+        });
+
+// Close Checkout:
+        $(window).on('popstate', function() {
+            handler.close();
+        });
+
+    }
+
+</script>
+
+</body>
+</html>

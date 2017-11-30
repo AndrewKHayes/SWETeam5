@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<style>
+   .mySlides {display:none}
+   .w3-left, .w3-right, .w3-badge {cursor:pointer}
+   .w3-badge {height:13px;width:13px;padding:0}
+</style>
+<style>
+   body{
+       background-color: #2c3e5b;
+
+   }
+   font{
+       color: white;
+   }
+</style>
+<body>
+
+<div class="w3-container">
+   <h2>Darjeeling, India</h2>
+   <p id="costPerNight">85</p><p>per night</p>
+   <input type="date" id="checkindate"><button type="button" onclick="nights()">Check-In</button>
+   <input type="date" id="checkoutdate"><button type="button" onclick="nights()">Check-Out</button>
+
+   <p id="demo"></p>
+   <p id="demo2"></p>
+   <p id="demo3"></p>
+
+   <button id="total" onClick="location.href='addonspage.html'"></button>
+
+
+
+</div>
+
+<div class="w3-content w3-display-container" style="max-width:800px">
+   <img class="mySlides" src="https://i.imgur.com/LAagKSx.jpg" style="width:100%">
+   <img class="mySlides" src="https://i.imgur.com/CRrqakB.jpg" style="width:100%">
+   <img class="mySlides" src="https://i.imgur.com/o8diDnm.jpg" style="width:100%">
+   <img class="mySlides" src="https://i.imgur.com/aaB0Jpd.jpg" style="width:100%">
+   <img class="mySlides" src="https://i.imgur.com/cpGrOoY.jpg" style="width:100%">
+   <div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">
+       <div class="w3-left w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
+       <div class="w3-right w3-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>
+       <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(1)"></span>
+       <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(2)"></span>
+       <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(3)"></span>
+       <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(4)"></span>
+       <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(5)"></span>
+
+
+   </div>
+
+</div>
+
+
+<script>
+   var slideIndex = 1;
+   showDivs(slideIndex);
+
+   function plusDivs(n) {
+       showDivs(slideIndex += n);
+   }
+
+   function currentDiv(n) {
+       showDivs(slideIndex = n);
+   }
+
+   function showDivs(n) {
+       var i;
+       var x = document.getElementsByClassName("mySlides");
+       var dots = document.getElementsByClassName("demo");
+       if (n > x.length) {slideIndex = 1}
+       if (n < 1) {slideIndex = x.length}
+       for (i = 0; i < x.length; i++) {
+           x[i].style.display = "none";
+       }
+       for (i = 0; i < dots.length; i++) {
+           dots[i].className = dots[i].className.replace(" w3-white", "");
+       }
+       x[slideIndex-1].style.display = "block";
+       dots[slideIndex-1].className += " w3-white";
+   }
+   function nights() {
+       var x = document.getElementById("checkindate");
+       var checkin = x.value;
+       document.getElementById("demo").innerHTML= "Check-in on " + checkin;
+       var y = document.getElementById("checkoutdate");
+       var checkout = y.value;
+       document.getElementById("demo2").innerHTML= "Check-out on " + checkout;
+
+
+       var inday = new Date(document.getElementById("checkindate").value);
+       var outday = new Date(document.getElementById("checkoutdate").value);
+       var total = parseInt(-(inday - outday) / (24 * 3600 * 1000));
+
+       document.getElementById("total").innerHTML="Book this home for "+total+" nights";
+       localStorage.setItem('nights',total);
+
+       var z = document.getElementById("costPerNight");
+       var costText = z.textContent;
+       var costPerNight = Number(costText);
+
+       var totalCost = total * costPerNight;
+       document.getElementById("demo3").innerHTML = totalCost;
+       localStorage.setItem('totalcost',totalCost);
+
+
+
+   }
+
+   function GetDays(){
+       var inday = new Date(document.getElementById("checkin").value);
+       var outday = new Date(document.getElementById("checkout").value);
+       return parseInt((inday - outday) / (24 * 3600 * 1000));
+   }
+
+   //    function cal() {
+   //        if (document.getElementById("drop_date")) {
+   //            document.getElementById("numdays2").value = GetDays();
+   //        }
+
+</script>
+
+</body>
+</html>

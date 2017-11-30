@@ -1,0 +1,130 @@
+<!Doctype html>
+<html lang="en">
+    <head>
+    <title>Vacay.com</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <meta charset="utf-8">
+        <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
+        <link href="https://fonts.googleapis.com/css?family=Barlow+Condensed" rel="stylesheet">
+        <link rel="stylesheet" href="filterStyle.css">
+       
+    </head>
+    
+    <body>
+        <div class="filter">
+            <h2>Filter results ...</h2>
+        <div class="dropdown">
+        <h3>Price</h3>
+           <button onclick="minFunction()" class="dropbtn">min/night</button>
+            <form id="myDrop" class="dropdown-content">
+                <a>100+</a>
+                <a>200+</a>
+                <a>300+</a>
+                <a>400+</a>
+                <a>500+</a>
+                <a>600+</a>
+                <a>700+</a>
+                <a>800+</a>
+            
+            </form>
+        </div>
+        <div class="dropdown">
+           <button onclick="maxFunction()" class="dropbtn">max/night</button>
+        <form id = "myDrop2" class="dropdown-content">
+            <a>1000+</a>
+            <a>900+</a>
+            <a>800+</a>
+            <a>700+</a>
+            <a>600+</a>
+            <a>500+</a>
+            <a>400+</a>
+            <a>300+</a>
+            <a>200+</a>
+            <a>100+</a>
+            
+            </form>
+    </div>
+        <div class="bed" >
+        <div class="dropdown">
+        <h3>Bedrooms</h3>
+          <button onclick="bedFunction()" class="dropbtn">0+</button>
+            <form id="myDrop3" class="dropdown-content">
+                <a>1+</a>
+                <a>2+</a>
+                <a>3+</a>
+                <a>4+</a>
+                <a>5+</a>
+            
+            </form>
+        </div>
+        </div>
+        
+        <div class="guests">
+        <div class="dropdown">
+        <h3>Guests</h3>
+           <button onclick="guestFunction()" class="dropbtn">0+</button>
+            <form id="myDrop4" class="dropdown-content">
+                <a>1+</a>
+                <a>2+</a>
+                <a>3+</a>
+                <a>4+</a>
+                <a>5+</a>
+                <a>6+</a>
+                <a>7+</a>
+                <a>8+</a>
+                <a>9+</a>
+                <a>10+</a>
+            </form>
+        </div>
+        </div>
+    <div class="amenities">
+        <h3>Amenities</h3>
+        <form>
+            <input type="checkbox" value="Pool">Pool<br>
+            <input type="checkbox" value="Heated Pool">Heated Pool<br>
+            <input type="checkbox" value="Hot tub">Hot Tub<br>
+            <input type="checkbox" value="Wi-Fi">Wi-Fi<br>
+            <input type="checkbox" value="Fireplace">Fireplace<br>
+            <input type="checkbox" value="Grill">Grill<br>
+            <input type="checkbox" value="Pool Table">Pool Table<br>
+            <input type="checkbox" value="Dishwasher">Dishwasher<br>
+            <input type="checkbox" value="Washing Machine">Washing Machine<br>
+        </form>
+        </div>
+        <div class="pets">
+        <h3>Pets</h3>
+            <form>
+            <input type="checkbox" value="Dogs">Dogs allowed<br>
+            <input type="checkbox" value="Cats">Cats allowed<br>
+            <input type="checkbox" value="No pets">No Pets<br>
+            </form>
+        </div>
+        <div class="proptype">
+        <h3>Property Type</h3>
+            <form>
+                <input type="checkbox" value="Apartment">Apartment<br>
+                <input type="checkbox" value="Cabin">Cabin<br>
+                <input type="checkbox" value="House">House<br>
+                <input type="checkbox" value="Chalet">Chalet<br>
+                
+            </form>
+        </div>
+        <div class="more">
+        <h3>Etc.</h3>
+            <form>
+                <input type="checkbox" value="Smoking">Smoking Allowed<br>
+                <input type="checkbox" value="Wheel">Wheelchair Access<br>
+            </form>
+        </div>
+        </div>
+        
+        <script src="action.js"></script>
+        
+    </body>
+
+
+
+
+
+
+</html>
